@@ -1,4 +1,5 @@
 @Created by Ryan Anderez Patenio
+--> The Actual Name of this Website is Jedidiah' Bakeshop Management System
 -->for more info or inquiries plss DM me on Facebook "Ryan Anderez Patenio" or email= ryanpatenio06@gmail.com
 
 for importing Database!
