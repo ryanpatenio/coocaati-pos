@@ -9,8 +9,8 @@
           <i class="bi bi-geo-alt icon"></i>
           <div>
             <h4>Address</h4>
-            <p>
-            <br>
+            <p style="color: cyan;">
+           
             Zone 1, near old Jolibee, beside Avon & Digibox, Iba, Zambales, Philippines<br>
             </p>
           </div>
@@ -22,8 +22,8 @@
           <div>
             <h4>Reservations</h4>
             <p>
-              <strong>Phone:</strong> +63 981 8574 753<br>
-              <strong>Email:</strong> coocaati@gmail.com<br>
+              <strong>Phone:</strong><a href="javascript:void()" style="color: cyan;"> +63 981 8574 753</a> <br>
+              <strong>Email:</strong> <a href="javascript:void()" style="color: cyan;">coocaati@gmail.com</a><br>
             </p>
           </div>
         </div>
@@ -33,8 +33,8 @@
           <div>
             <h4>Opening Hours</h4>
             <p>
-              <strong>Mon-Sat: 8AM</strong> - 9PM<br>
-              Sunday: Closed
+              <strong style="color: cyan;">Mon-Sat: 8AM - 9PM</strong> <br>
+             <strong style="color:rgb(219, 58, 58)"> Sunday: Closed</strong>
             </p>
           </div>
         </div>
@@ -42,10 +42,10 @@
         <div class="col-lg-3 col-md-6 footer-links">
           <h4>Follow Us</h4>
           <div class="social-links d-flex">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            
+            <a href="https://www.facebook.com/tagpuanIba" class="facebook" style="color: cyan;"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/coocaati/" class="instagram" style="color:cyan"><i class="bi bi-instagram"></i></a>
+           
           </div>
         </div>
 
@@ -54,14 +54,9 @@
 
     <div class="container">
       <div class="copyright">
-        <strong><span>CooCaati</span></strong>. All Rights Reserved <?php $year = (new DateTime)->format("Y"); echo $year; ?>
+        <strong><span style="color: cyan;">Coocaati</span></strong>. All Rights Reserved <?php $year = (new DateTime)->format("Y"); echo $year; ?>
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/ -->
-        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
       </div>
     </div>
 

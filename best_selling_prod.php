@@ -20,15 +20,10 @@
 
             <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(admin/assets/avatar/<?php echo $bestProd['avatar']; ?>)">
               <h3><?php echo $bestProd['prod_name']; ?></h3>
-              <div class="price align-self-start">$<?php echo $bestProd['prod_price']; ?></div>\ <h3 style="color: yellow;"><strong> Over <?php echo $bestProd['sold']; ?> Pieces SOLD</strong></h3><br>
+              <div class="price align-self-start">₱<?php echo $bestProd['prod_price']; ?></div>\ <h3 style="color: yellow;"><strong> Over <?php echo $bestProd['sold']; ?> Piece(s) SOLD</strong></h3><br>
               <p class="description">
                 <?php echo $bestProd['prod_desc']; ?>
-               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-               tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-               quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-               consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-               cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-               proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              
               </p>
             </div><!-- End Event item -->                
 

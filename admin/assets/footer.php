@@ -1,9 +1,9 @@
 
 
   <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
+  <footer id="footer" class="footer" style="background-color: #043f34;">
     <div class="copyright">
-       <strong><span>CooCaati</span></strong>. All Rights Reserved <?php $year = (new DateTime)->format("Y"); echo $year; ?>
+       <strong style="color: white;"><span style="color: white;">Coocaati</span>. All Rights Reserved <?php $year = (new DateTime)->format("Y"); echo $year; ?></strong>
     </div>
     <div class="credits">
       <!-- All the links in the footer should remain intact. -->

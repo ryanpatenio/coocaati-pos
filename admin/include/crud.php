@@ -1081,105 +1081,122 @@ function getGraph(){
     	global $mydb;
     	extract($_POST);
 
-    $data = " user_id = '$hidden_user_id' ";
-	$data .= ", message = '$msgContent' ";
-	
-	$data .= ", problem_type = '$problem_type' ";
-	$data .= ", date_message = now() ";
-	$data .= ", status = '0' ";
+		$data = " user_id = '$hidden_user_id' ";
+		$data .= ", message = '$msgContent' ";
+		
+		$data .= ", problem_type = '$problem_type' ";
+		$data .= ", date_message = now() ";
+		$data .= ", status = '0' ";
 
-	if($_FILES['image_screenshot']['tmp_name'] != ''){
-						$img_screenshot = strtotime(date('y-m-d H:i')).'_'.$_FILES['image_screenshot']['name'];
-						$move = move_uploaded_file($_FILES['image_screenshot']['tmp_name'],'assets/screenshot/'. $img_screenshot);
-					$data .= ", screen_shot = '$img_screenshot' ";
+		if($_FILES['image_screenshot']['tmp_name'] != ''){
+				$img_screenshot = strtotime(date('y-m-d H:i')).'_'.$_FILES['image_screenshot']['name'];
+				$move = move_uploaded_file($_FILES['image_screenshot']['tmp_name'],'assets/screenshot/'. $img_screenshot);
+			$data .= ", screen_shot = '$img_screenshot' ";
 
-	}
+		}
 
-	$mydb->setQuery("INSERT INTO user_message SET ".$data);
-	$cur = $mydb->executeQuery();
+		$mydb->setQuery("INSERT INTO user_message SET ".$data);
+		$cur = $mydb->executeQuery();
 
-	if($cur){
-		return 1;
-	}else{
-		return 2;
-	}
-
-    }
-
-
-    function updateCustomerData(){
-    	global $mydb;
-    	extract($_POST);
-
-    	$data = " name = '$customer_name' ";
-		$data .= ", contact = '$contactNumber' ";
-		$data .= ", address = '$customer_address' ";
-
-		if(!empty($customer_id)){
-			//check if all the password field is not empty!
-			//if not empty password field it will execute and change password!
-			if(!empty($oldPassword) && !empty($newPassword) && !empty($conPassword)){
-				//not Empty password Field
-				if(!empty($oldPassword)){
-					$pass_hash = md5($oldPassword);
-					if(!empty($customer_id)){
-						//check if the password from database is match!
-						$mydb->setQuery("select * from customer where password = '".$pass_hash."' and customer_id = {$customer_id}");
-						$result = $mydb->executeQuery();
-						$numrows = $mydb->num_rows($result);
-						if($numrows > 0){
-							//password Match
-							//then check if the new password is not empty!
-							if(!empty($newPassword)){
-								//not empty
-								$newPass = md5($newPassword);
-								$mydb->setQuery("UPDATE customer SET password = '$newPass' where customer_id = {$customer_id}");
-								$executePass = $mydb->executeQuery();
-								if($executePass){
-									$mydb->setQuery("UPDATE customer SET ".$data." WHERE customer_id = {$customer_id}");
-									$cur = $mydb->executeQuery();
-									// $move = move_uploaded_file($_FILES['customer_avatar']['tmp_name'],'../assets/avatar/'. $save_avatar_profile);
-									// unlink('../assets/avatar/'.$hidden_customer_avatar);
-									return 1010;
-								}
-							}
-							
-						}else{
-							//password from database Not Match!
-							return 900;
-						}
-					}
-	}		
-			// the password Field is Not empty
-			//then it will execute to change basic details and customer profile
-			}else{
-
-			//empty password field!
-			if($_FILES['customer_avatar']['tmp_name'] != ''){
-
-				$save_avatar_profile = strtotime(date('y-m-d H:i')).'_'.$_FILES['customer_avatar']['name'];
-				$move = move_uploaded_file($_FILES['customer_avatar']['tmp_name'],'../assets/avatar/'. $save_avatar_profile);
-				unlink('../assets/avatar/'.$hidden_customer_avatar);
-				$data .= ", avatar = '$save_avatar_profile' ";		
-
-				}
-
-				$mydb->setQuery("UPDATE customer SET ".$data." WHERE customer_id = {$customer_id}");
-				$cur = $mydb->executeQuery();
-
-					if($cur){
-						return 1;
-					}else{
-						return 100;
-					}
-
-				}
-
+		if($cur){
+			return 1;
 		}else{
-			return 200;
+			return 2;
 		}
 
     }
+
+
+	function updateCustomerData() {
+		global $mydb;
+		
+		// Validate required fields
+		if (empty($_POST['customer_id'])) {
+			return 200; // Missing customer ID
+		}
+	
+		$customer_id = $_POST['customer_id'];
+		$customer_name = $_POST['customer_name'];
+		$contactNumber = $_POST['contactNumber'];
+		$customer_address = $_POST['customer_address'];
+	
+		// // Prepare base data for update
+		$data = [
+			'name' => $customer_name,
+			'contact' => $contactNumber,
+			'address' => $customer_address
+		];
+		
+	
+		// Handle password change if all password fields are provided
+		if (!empty($_POST['oldPassword']) && !empty($_POST['newPassword']) && !empty($_POST['conPassword'])) {
+			 $this->handlePasswordChange($mydb, $customer_id, $_POST['oldPassword'], $_POST['newPassword'], $data);
+		}
+	
+		// // Handle avatar upload
+		if (!empty($_FILES['customer_avatar']['tmp_name'])) {
+			$avatarResult =  $this->handleAvatarUpload($customer_id, $mydb);
+			if ($avatarResult == false) {
+				return 3000; // Return error code if upload failed
+			}
+			$data['avatar'] = $avatarResult;
+		}
+	
+		// Update customer data
+		return $this->updateCustomerRecord($mydb, $customer_id, $data);
+		
+	}
+	
+	// Helper function for password change
+	function handlePasswordChange($mydb, $customer_id, $oldPassword, $newPassword, $data) {
+		$oldHash = md5($oldPassword);
+		
+		// Verify old password
+		$mydb->setQuery("SELECT 1 FROM customer WHERE password = '$oldHash' AND customer_id = $customer_id");
+		if ($mydb->num_rows($mydb->executeQuery()) === 0) {
+			return 900; // Old password doesn't match
+		}
+	
+		// Update password and other data
+		$newHash = md5($newPassword);
+		$data['password'] = $newHash;
+		
+		return $this->updateCustomerRecord($mydb, $customer_id, $data) ? 1010 : 100;
+	}
+	
+	// Helper function for avatar upload
+	function handleAvatarUpload($customer_id, $mydb) {
+		$targetDir = '../assets/avatar/';
+		$filename = strtotime(date('y-m-d H:i')).'_'.basename($_FILES['customer_avatar']['name']);
+		$targetPath = $targetDir . $filename;
+	
+		// Delete old avatar if exists
+		if (!empty($_POST['hidden_customer_avatar'])) {
+			$oldPath = $targetDir . $_POST['hidden_customer_avatar'];
+			if (file_exists($oldPath)) {
+				unlink($oldPath);
+			}
+		}
+	
+		// Move new avatar
+		if (move_uploaded_file($_FILES['customer_avatar']['tmp_name'], $targetPath)) {
+			return $filename;
+		}
+		
+		return false; // Avatar upload failed
+	}
+	
+	// Helper function for database update
+	function updateCustomerRecord($mydb, $customer_id, $data) {
+		$setParts = [];
+		foreach ($data as $key => $value) {
+			$setParts[] = "$key = '$value'";
+		}
+		$setClause = implode(', ', $setParts);
+		
+		$mydb->setQuery("UPDATE customer SET $setClause WHERE customer_id = $customer_id");
+		return $mydb->executeQuery();
+	}
 
 
 
@@ -1264,92 +1281,92 @@ function getGraph(){
 
     }
 
- function restoreMyOrder(){
-    global $mydb;
+	function restoreMyOrder(){
+		global $mydb;
 
-    	$order_id = $_POST['order_id'];
+			$order_id = $_POST['order_id'];
 
-    	if(!empty($order_id)){
+			if(!empty($order_id)){
 
-	    	$mydb->setQuery("UPDATE orders SET status='0' WHERE  order_id = {$order_id};");
-	    	$cur = $mydb->executeQuery();
-	    	
-	    	if($cur){
-	    		return 1;
-	    	}
+				$mydb->setQuery("UPDATE orders SET status='0' WHERE  order_id = {$order_id};");
+				$cur = $mydb->executeQuery();
+				
+				if($cur){
+					return 1;
+				}
 
-	    	
-	    }
-
-	    return false;   	
-
-
-    }
-
-function getMyOrderListCount(){
- global $mydb;
-	$mydb->setQuery("select count(*) as 'total_count' from orders where customer_id = {$_POST['id']} and status = 0;");
-	$cur = $mydb->executeQuery();
-	$numrows = $mydb->num_rows($cur);
-	if($numrows > 0){
-		$found = $mydb->loadSingleResult();
-		return $found->total_count;
-	}else{
-		return false;
-	}
-
-    }
-
-function getInsertChat(){
-	global $mydb;
-	extract($_POST);
-	$msg_id = $_POST['message_id'];
-	$message = $_POST['message_text'];
-	$user_id = $_POST['hidden_user_id'];
-
-	$mydb->setQuery("INSERT INTO user_message_comments (user_mID, comments, date_com,user_id) VALUES ('$msg_id', '$message', now(),$user_id);");
-	$cur = $mydb->executeQuery();
-
-	if($cur){
-		return 1;
-	}else{
-		return 400;
-	}
-
-
-}
-
-function getChat(){
-	global $mydb;
-
-	$msg_id = $_POST['comment_id'];
-	$output = "";
-
-	if(!empty($msg_id)){
-		$mydb->setQuery("select u.user_id,concat(u.fname,' ',u.lname) as name,umc.comments,umc.date_com,u.avatar from user u,user_message_comments umc where u.user_id = umc.user_id and umc.user_mID = {$msg_id}");
-		$cur = $mydb->executeQuery();
-		$numrows = $mydb->num_rows($cur);
-
-		if($numrows > 0){
-
-			foreach ($cur as $data) {
-				$output .='
-	               	                  
-	                <div class="">
-	                  <img src="assets/avatar/'.$data['avatar'].'" style="width: 25px;border:1px solid #ccc;border-radius: 100%;">
-	                  <label style=""><strong>'.$data['name'].'</strong> - '.date("d M Y h:m a",strtotime($data['date_com'])).'</label>
-	                  <p class="mt-1">'.$data['comments'].'.
-	                </div>				
-				';
+				
 			}
 
-		}else{
-			return $output .="No Comments yet!..";
+			return false;   	
+
+
 		}
+
+	function getMyOrderListCount(){
+	global $mydb;
+		$mydb->setQuery("select count(*) as 'total_count' from orders where customer_id = {$_POST['id']} and status = 0;");
+		$cur = $mydb->executeQuery();
+		$numrows = $mydb->num_rows($cur);
+		if($numrows > 0){
+			$found = $mydb->loadSingleResult();
+			return $found->total_count;
+		}else{
+			return false;
+		}
+
+		}
+
+	function getInsertChat(){
+		global $mydb;
+		extract($_POST);
+		$msg_id = $_POST['message_id'];
+		$message = $_POST['message_text'];
+		$user_id = $_POST['hidden_user_id'];
+
+		$mydb->setQuery("INSERT INTO user_message_comments (user_mID, comments, date_com,user_id) VALUES ('$msg_id', '$message', now(),$user_id);");
+		$cur = $mydb->executeQuery();
+
+		if($cur){
+			return 1;
+		}else{
+			return 400;
+		}
+
+
 	}
 
-return $output;
-}
+	function getChat(){
+		global $mydb;
+
+		$msg_id = $_POST['comment_id'];
+		$output = "";
+
+		if(!empty($msg_id)){
+			$mydb->setQuery("select u.user_id,concat(u.fname,' ',u.lname) as name,umc.comments,umc.date_com,u.avatar from user u,user_message_comments umc where u.user_id = umc.user_id and umc.user_mID = {$msg_id}");
+			$cur = $mydb->executeQuery();
+			$numrows = $mydb->num_rows($cur);
+
+			if($numrows > 0){
+
+				foreach ($cur as $data) {
+					$output .='
+										
+						<div class="">
+						<img src="assets/avatar/'.$data['avatar'].'" style="width: 25px;border:1px solid #ccc;border-radius: 100%;">
+						<label style=""><strong>'.$data['name'].'</strong> - '.date("d M Y h:m a",strtotime($data['date_com'])).'</label>
+						<p class="mt-1">'.$data['comments'].'.
+						</div>				
+					';
+				}
+
+			}else{
+				return $output .="No Comments yet!..";
+			}
+		}
+
+	return $output;
+	}
 
 
 }

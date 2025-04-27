@@ -58,7 +58,7 @@ if(isset($_POST['monkey_name'])){
           <div class="card" style="background-color:#b6e5d2;border-radius:5px;">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="assets/avatar/<?php echo $user_data['avatar']; ?>" alt="Profile" class="rounded-circle">
+              <img src="assets/avatar/<?php echo $user_data['avatar']; ?>"  style="width: 40px; height: 40px;" alt="Profile" class="rounded-circle overflow-hidden w-100 object-fit-cover h-100">
               <h2><?php echo $user_data['account_name']; ?></h2>
               <h3><?php echo $user_data['job']; ?></h3>
              

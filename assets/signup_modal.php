@@ -69,38 +69,4 @@
                 </div>
         </div>
     </div><!-- End Vertically centered Modal-->
-     <script type="text/javascript">
-        $(document).ready(function(){
-          $(document).on('submit','#signup_form',function(e){
-            e.preventDefault();
-
-            $.ajax({
-              url:'admin/include/loginserver.php?action=customer_signup',
-              method:'POST',
-              data:$(this).serialize(),
-              cache:false,
-              async:false,
-
-              beforeSend:function(){
-
-              },
-              success:function(data){
-              if(data == 1){
-                 message('Sign Up Successfully!','success');
-               }
-               if(data == 2){
-                msg('Invalid Username or Password!','error');
-               }
-              //console.log(data);
-                             
-              },
-
-              error:function(xhr,status,error){
-                alert(xhr.responseText);
-              }
-
-            });
-          });
-
-        });
-      </script>
+     

@@ -23,8 +23,7 @@
     <!-- End About Section -->
     <?php include('profile.php'); ?>
     <?php require_once('mycart.php'); ?>
-    <?php require_once('assets/signup_modal.php'); ?>
-    <?php require_once('assets/login_modal.php'); ?>
+
 
 
   <!-- ======= Footer ======= -->

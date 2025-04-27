@@ -33,7 +33,14 @@
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
-                        <img src="admin/assets/avatar/<?php echo $customerData->avatar ?>" id="customer_display_avatar" width="150" id="display_avatar" alt="Profile">
+                        <?php
+                          if($customerData->avatar != 0){
+                            $src = 'admin/assets/avatar/'.$customerData->avatar;
+                          }else{
+                            $src = 'assets/img/chefs/chefs-3.jpg';
+                          }
+                        ?>
+                        <img src="<?=$src; ?>" id="customer_display_avatar" width="150" id="display_avatar" alt="Profile">
                         <div class="pt-2">
 
                         <input type="hidden" name="hidden_customer_avatar" value="<?php echo $customerData->avatar ?>">
@@ -43,8 +50,7 @@
                         </div>
                       </div>
                     </div>
-
-                    
+          
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                       <div class="col-md-8 col-lg-9">
@@ -62,35 +68,29 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Job" class="col-md-6 col-lg-3 col-form-label">Old Password</label>
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Old Password</label>
                       <div class="col-md-8 col-lg-9">
-                      	<input type="password" class="form-control" name="oldPassword">
-	                       
-                      </div>
-                      
-                    </div>
-                   
-
-                    <div class="row mb-3">
-                      <label for="Job" class="col-md-6 col-lg-3 col-form-label">New Password</label>
-                      <div class="col-md-8 col-lg-9">
-                      	<input type="password" class="form-control" id="newPassword" name="newPassword">
-	                       
+                        <input type="password" name="oldPassword" id="oldPassword" class="form-control">
                       </div>
 
+                      <label  for="contact" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                      <div class="col-md-8 col-lg-9 mt-2">
+                        <input type="password" name="newPassword" id="newPassword" class="form-control">
+                      </div>
+
+                      <label  for="contact" class="col-md-4 col-lg-3 col-form-label">Confirm Password</label>
+                      <div class="col-md-8 col-lg-9 mt-2">
+                      	<input type="password" class="form-control" id="conPassword" name="conPassword">	                       
+                      </div>  
                     </div>
+
                     <span id="error_message"></span>
 
                     <div class="row mb-3">
-                      <label for="Job" class="col-md-6 col-lg-3 col-form-label">Confirm Password</label>
-                      <div class="col-md-8 col-lg-9">
-                      	<input type="password" class="form-control" id="conPassword" name="conPassword">
-	                       
-                      </div>
-                      
+                                        
                     </div>
                     <span id="error_message"></span>
-				</div>
+				        </div>
 
 
                     </div>
@@ -115,28 +115,28 @@
   <script type="text/javascript">
 
     $('#customer_avatar').change(function(e){
-    e.preventDefault();
-    let output_img = document.getElementById("customer_display_avatar");
+      e.preventDefault();
+      let output_img = document.getElementById("customer_display_avatar");
       output_img.src=URL.createObjectURL(event.target.files[0]);
         output_img.onload = function(){
           URL.revokeObjectURL(output_img.src);
         };
        
-  });
+    });
 
   $(document).on('submit','#updateCustomerProfile',function(e){
     e.preventDefault();
 
     let newP = $('#newPassword').val();
     let conP = $('#conPassword').val();
+    let oldPass = $('#oldPassword').val();
 
     let fd = new FormData($(this)[0]);
     let file = $('#customer_display_avatar')[0].files;
 
+    if (!validatePasswords(oldPass, newP, conP)) return;
 
-    if(newP != conP){
-      msg('New Password And Confirm Password Not Match!','warning');
-    }else{
+    //update
       $.ajax({
         url:'admin/include/customerServer.php?action=updateCustomerProfile',
         method:'POST',
@@ -147,22 +147,19 @@
         processData:false,
 
         success:function(data){
-          //console.log(data);
+          console.log(data);
             if(data == 1 || data == 1010){
                 message('Profile Update successfully!','success');
-            }
-           
-            if(data == 100){
+            }else if(data == 100){
                 message('Unexpected error 100!','error');
-            }
-            if(data == 200){
+            }else if(data == 200){
                 message('Unexpected error 200!','error');
-            }
-            if(data == 400){
+            }else if(data == 400){
                message('Unexpected error 200!','error');
-            }
-            if(data == 900){
+            }else if(data == 900){
               msg('Old Password Not Match!','error');
+            }else{
+              msg('Internal Server Error: '+data,'error')
             }
             
         },
@@ -170,11 +167,8 @@
         error:function(xhr,status,error){
             alert(xhr.responseText);
         }
-        
 
     });
-    }
-
 
   });
 
@@ -192,12 +186,14 @@ $(document).on('keyup','#conPassword',function(e){
             $('#error_message').text('Password Match!');
             $('#error_message').attr('class','text-success');
         }
-    }else{
-        $('#error_message').text('');
-        $('error_message').attr('class','');
-    }
+        }else{
+            $('#error_message').text('');
+            $('error_message').attr('class','');
+      
+        }
 
 });
+
 $(document).on('keyup','#newPassword',function(e){
     e.preventDefault();
 
@@ -220,7 +216,22 @@ $(document).on('keyup','#newPassword',function(e){
 
 });
 
-
-
+function validatePasswords(oldPass, newP, conP) {
+    // If old password is provided, validate the new passwords
+    if (oldPass) {
+        if (!newP || !conP) {
+            msg('Please fill up all password fields!', 'warning');
+            return false;
+        }
+        
+        if (newP !== conP) {
+            msg('New passwords do not match!', 'warning');
+            return false;
+        }
+        
+    }
+    
+    return true;
+}
 
   </script>

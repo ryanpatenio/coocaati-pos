@@ -43,14 +43,14 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center bg-dark">
 
-    <div class="d-flex align-items-center justify-content-between">
-      <i class="bi bi-list toggle-sidebar-btn me-1" style="color: white;position: relative; left: -10px"></i>
+  <div class="d-flex align-items-center justify-content-between">
+    <i class="bi bi-list toggle-sidebar-btn me-1" style="color: white; position: relative; left: -10px"></i>
 
-      <a href="<?php echo WEB_ROOT."admin/"; ?>" class="logo d-flex align-items-center">
-        <span class="d-none d-lg-block " style="color: white;">Coocaati</span>
-      </a>
-      
-    </div><!-- End Logo -->
+    <a href="<?php echo WEB_ROOT."admin/"; ?>" class="logo d-flex align-items-center">
+      <span class="d-lg-none d-block" style="color: white;">Coocaati</span> <!-- Show on mobile -->
+      <span class="d-none d-lg-block" style="color: white;">Coocaati</span> <!-- hide on mobile -->
+    </a>
+  </div><!-- End Logo -->
 
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
@@ -248,67 +248,47 @@
 
         <li class="nav-item dropdown pe-3">
 
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+          <div class="avatar-container" style="width: 38px; height: 38px; border-radius: 50%; overflow: hidden;">
+              <img src="assets/avatar/<?php echo $user_data['avatar']; ?>" alt="Profile" 
+              style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <span class="d-none d-md-block dropdown-toggle ps-2" style="color: white; font-weight: 500;">
+          <?php echo $_SESSION['account_name']; ?>
+          </span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile" style="min-width: 220px;">
+        <li class="dropdown-header">
+            <div class="d-flex align-items-center" style="gap: 10px;"> <!-- Reduced gap -->
+                <div style="width: 36px; height: 36px; border-radius: 50%; overflow: hidden; flex-shrink: 0;">
+                    <img src="assets/avatar/<?php echo $user_data['avatar']; ?>" alt="Profile" 
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div>
+                    <h6 class="mb-0" style="line-height: 1.2;"><?php echo $user_data['account_name']; ?></h6>
+                    <small class="text-muted" style="font-size: 0.75rem;">
+                        <?php echo ($user_data['type'] == 1) ? "Administrator" : "User"; ?>
+                    </small>
+                </div>
+            </div>
+        </li>
+        <li><hr class="dropdown-divider m-0"></li>
 
-
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/avatar/<?php echo $user_data['avatar']; ?>" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2" style="color: white;"><?php echo $_SESSION['account_name']; ?> </span>
-          </a><!-- End Profile Iamge Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-
-
-              <h6><?php echo $user_data['account_name']; ?></h6>
-              <span><?php if($user_data['type'] == 1){
-                echo "Administrator";
-
-               }else{
-                "None";
-               } ?></span>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="index.php?page=profile">
-                <i class="bi bi-person"></i>
-                <span>My Profile</span>
+          <li>
+              <a class="dropdown-item d-flex align-items-center py-2" href="index.php?page=profile">
+                  <i class="bi bi-person me-2" style="width: 20px; text-align: center;"></i>
+                  <span>My Profile</span>
               </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+          </li>
+       <li><hr class="dropdown-divider m-0"></li>
 
-          <!--   <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li> -->
-           <!--  <li>
-              <hr class="dropdown-divider">
-            </li> -->
-
-          <!--   <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li> -->
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" id="sign_out_btn_ad">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
-
-          </ul><!-- End Profile Dropdown Items -->
+    <li>
+        <a class="dropdown-item d-flex align-items-center py-2" id="sign_out_btn_ad">
+            <i class="bi bi-box-arrow-right me-2" style="width: 20px; text-align: center;"></i>
+            <span>Sign Out</span>
+        </a>
+    </li>
+</ul>
         </li><!-- End Profile Nav -->
 
       </ul>

@@ -47,38 +47,4 @@
                 </div>
         </div>
       </div><!-- End Vertically centered Modal-->
-
-      <script type="text/javascript">
-        $(document).ready(function(){
-          $(document).on('submit','#cust_login_form',function(e){
-            e.preventDefault();
-
-            $.ajax({
-              url:'admin/include/loginserver.php?action=customer_login',
-              method:'POST',
-              data:$(this).serialize(),
-              cache:false,
-              async:false,
-
-              beforeSend:function(){
-
-              },
-              success:function(data){
-              if(data == 1){
-                 window.location.reload();
-               }
-               if(data == 2){
-                msg('Invalid Username or Password!','error');
-               }
-                             
-              },
-
-              error:function(xhr,status,error){
-                alert(xhr.responseText);
-              }
-
-            });
-          });
-
-        });
-      </script>
+    

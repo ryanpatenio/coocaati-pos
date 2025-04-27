@@ -15,7 +15,7 @@
             if(!isset($_SESSION['customer_id'])){
               //false lets echo the button "Sign Up!"
               ?>
-               <a href="#book-a-table" id="sign_up_btn" data-bs-toggle="modal" data-bs-target="#sign_up"class="btn-book-a-table">Sign Up Now!</a>
+               <a href="auth/register.php" id="sign_up_btn"class="btn-book-a-table">Sign Up Now!</a>
 
               <?php
             }

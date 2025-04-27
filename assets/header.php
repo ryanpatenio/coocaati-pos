@@ -7,7 +7,6 @@ $member = new user();
 $dashboard = new dash();
  ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,12 +21,6 @@ $dashboard = new dash();
   <!-- Favicons -->
   <link href="assets/img/logo2.jpg" rel="icon">
   <link href="assets/img/logo2.jpg" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> -->
-
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -38,16 +31,7 @@ $dashboard = new dash();
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-
    <script src="admin/assets/vendor/jquery-min.js"></script>
-  <!-- =======================================================
-  * Template Name: Yummy
-  * Updated: Mar 10 2023 with Bootstrap v5.2.3
-  * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
 
 <body>
 
@@ -80,24 +64,18 @@ $dashboard = new dash();
   if(!isset($_SESSION['customer_id'])){
     //false * lets echo the sign in button
     ?>
-      <a class="btn-book-a-table-d" href="#Login" data-bs-toggle="modal" data-bs-target="#login"><span class="bi bi-lock"></span> Login</a>
+      <a class="btn-book-a-table-d" href="auth/login.php"><span class="bi bi-lock"></span> Login</a>
 
     <?php
   }else{
     //true * lets echo the profile button
 
     ?>
-<!-- 
-         <a class="nav-link nav-icon" href="#"data-bs-toggle="modal" data-bs-target="#myCart">
-            <i class="bi bi-cart-fill"></i>
-            <span class="badge bg-primary badge-pill badge-number rounded-circle" id="cust-cart-count2" style="margin-left: -4px;"></span>
-          </a> End Notification Icon --> 
-
 
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 
           <?php $cust_avatar = $member->getCustomerAvatar($_SESSION['customer_id']); ?>
-            <img src="<?php echo WEB_ROOT; ?>admin/assets/avatar/<?php echo $cust_avatar; ?>" alt="Profile" class="rounded-circle" style="width: 40px;">
+            <img src="<?php echo WEB_ROOT; ?><?= $cust_avatar ? 'admin/assets/avatar/'.$cust_avatar : 'assets/img/chefs/chefs-3.jpg' ?>" alt="Profile" class="rounded-circle" style="width: 40px;">
             <span class="d-none d-md-block dropdown-toggle ps-2">
                <?php if(!isset($_SESSION['customer_id'])){
 
@@ -137,11 +115,6 @@ $dashboard = new dash();
 
 
    ?>
-
-
-
-
-      
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
