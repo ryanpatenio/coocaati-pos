@@ -1,13 +1,15 @@
 <?php require 'assets/checker.php'; ?>
 
 <main id="main" class="main" style="background-color: #043f34;">
-    <div class="pagetitle">
-      <h1>Transactions</h1>
+<div class="pagetitle">
+      <h1 style="color: white;">Transactions</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="<?php echo WEB_ROOT;  ?>">Home</a></li>
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Transactions</li>
+          <li class="breadcrumb-item"><a href="<?php echo WEB_ROOT."/admin";  ?>" 
+            style="color:white"
+          >Home</a></li>
+          <li class="breadcrumb-item" style="color:white;">Pages</li>
+          <li class="breadcrumb-item active" style="color:white;">Transactions</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->

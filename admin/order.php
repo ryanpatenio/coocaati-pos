@@ -15,12 +15,14 @@
     <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Orders</h1>
+      <h1 style="color: white;">Orders</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="<?php echo WEB_ROOT;  ?>">Home</a></li>
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Orders</li>
+          <li class="breadcrumb-item"><a href="<?php echo WEB_ROOT."/admin";  ?>" 
+            style="color:white"
+          >Home</a></li>
+          <li class="breadcrumb-item" style="color:white;">Pages</li>
+          <li class="breadcrumb-item active" style="color:white;">Orders</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -32,8 +34,8 @@
         
 
               <!-- DataTables Example -->
-        <div class="card mb-3">
-          <div class="card-header">
+        <div class="card mb-3" style="background-color:#b6e5d2;border-radius:5px;"> 
+          <div class="card-header" style="background-color:#b6e5d2;border-radius:5px;">
             <i class="fas fa-table"></i>
            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#AddOrders" type="button"><i class="bi bi-plus-circle"> New</i></button>
 
@@ -45,7 +47,7 @@
 
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table datatable table-light" id="dataTable" width="100%" cellspacing="0">
+              <table class="table datatable table-info" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
                     <th>Order No.</th>
