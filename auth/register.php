@@ -22,7 +22,7 @@
                            
                        </div>
                     </div>
-                <form class="row g-3" method="POST" id="signup_form">
+                <form method="POST" id="signup_form">
                     <div class="row mt-2">
                         <div class="col">
                             <label for="" class="form-label">Full Name</label>

@@ -12,8 +12,8 @@
     <div class="container-fluid vh-100">
         <div class="d-flex justify-content-center align-items-center h-100">
 
-            <div class="card shadow-lg" style="width: 500px; height:auto">                
-                <div class="card-body px-5 py-5">
+            <div class="card shadow-lg px-3 py-4" style="width: 400px; height:auto">                
+                <div class="card-body ">
                     <div class="row mt-2">
                        <div class="d-flex flex-column justify-content-center  align-items-center mb-4">
                             <h2>Login</h2>
@@ -24,7 +24,7 @@
                        </div>
                     </div>
                     <!---Login Form---->
-                    <form class="row g-3" method="POST" id="LoginForm">
+                    <form method="POST" id="LoginForm">
                         <div class="row mt-2">
                             <div class="col">
                                 <label for="" class="form-label">Username</label>
