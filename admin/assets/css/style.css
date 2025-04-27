@@ -14,8 +14,8 @@
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
-  color: #444444;
+  background: #477e58;
+  color: #020202;
 }
 
 a {
@@ -24,7 +24,7 @@ a {
 }
 
 a:hover {
-  color: #717ff5;
+  color: #0c0c0c;
   text-decoration: none;
 }
 
@@ -44,6 +44,7 @@ h6 {
   margin-top: 60px;
   padding: 20px 30px;
   transition: all 0.3s;
+  background-color: #043f34;
 }
 
 @media (max-width: 1199px) {
@@ -685,6 +686,12 @@ h6 {
 
 .sidebar-nav .nav-item {
   margin-bottom: 5px;
+  
+}
+/* modified css */
+#sidebar-nav .nav-item .nav-link:hover {
+  background-color: #1a6b4e !important;
+  color: white;
 }
 
 .sidebar-nav .nav-heading {
@@ -720,19 +727,18 @@ h6 {
 }
 
 
-
-
 .sidebar-nav .nav-link.collapsed i {
-  color: #899bbd;
+  color: #000000;
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
-  background: #f6f9ff;
+  color: #2434c0;
+  background: #f5f5f7;
 }
 
+
 .sidebar-nav .nav-link:hover i {
-  color: #4154f1;
+  color: #ffffff;
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
@@ -1249,6 +1255,7 @@ h6 {
   font-size: 14px;
   transition: all 0.3s;
   border-top: 1px solid #cddfff;
+  background-color: #043f34;
 }
 
 .footer .copyright {
@@ -1262,3 +1269,4 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+

@@ -7,11 +7,11 @@ $dashboard = new dash();
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Dashboard</h1>
+      <h1 style="color: white;">Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item"><a href="<?= WEB_ROOT."/admin" ?>" style="color:white;">Home</a></li>
+          <li class="breadcrumb-item active" style="color: white;">Dashboard</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -25,22 +25,14 @@ $dashboard = new dash();
 
             <!-- Sales Card -->
             <div class="col-xxl-4 col-md-6">
-              <div class="card info-card sales-card">
+              <div class="card info-card sales-card" style="background-color:#b6e5d2;border-radius:5px;">
 
                 <div class="filter">
-                 <!--  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul> -->
+      
+                
                 </div>
 
-                <div class="card-body">
+                <div class="card-body" >
                   <h5 class="card-title">Sales <span>| Today</span></h5>
 
                   <div class="d-flex align-items-center">
@@ -84,7 +76,7 @@ $dashboard = new dash();
 
             <!-- Revenue Card -->
             <div class="col-xxl-4 col-md-6">
-              <div class="card info-card revenue-card">
+              <div class="card info-card revenue-card" style="background-color:#b6e5d2;border-radius:5px;">
 
                 <div class="filter">
                  <!--  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -155,19 +147,9 @@ $dashboard = new dash();
             <!-- Customers Card -->
             <div class="col-xxl-4 col-xl-12">
 
-              <div class="card info-card customers-card">
+              <div class="card info-card customers-card" style="background-color:#b6e5d2;border-radius:5px;">
 
                 <div class="filter">
-                  <!-- <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul> -->
                 </div>
 
                 <div class="card-body">
@@ -225,19 +207,9 @@ $dashboard = new dash();
               ?>
 
           <div class="col-12">
-              <div class="card">
+              <div class="card" style="background-color:#b6e5d2;border-radius:5px;">
 
                 <div class="filter">
-                  <!-- <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul> -->
                 </div>
 
                 <div class="card-body">
@@ -254,25 +226,15 @@ $dashboard = new dash();
 
             <!-- Recent Sales -->
             <div class="col-12">
-              <div class="card recent-sales overflow-auto">
+              <div class="card recent-sales overflow-auto" style="background-color:#b6e5d2;border-radius:5px;">
 
                 <div class="filter">
-                 <!--  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul> -->
                 </div>
 
                 <div class="card-body">
                   <h5 class="card-title">Recent Sales <span>| Today</span></h5>
 
-                  <table class="table table-borderless datatable">
+                  <table class="table table-info datatable">
                     <thead>
                       <tr>
                         <th scope="col">#trans Code</th>
@@ -345,19 +307,10 @@ $dashboard = new dash();
 
             <!-- Top Selling -->
             <div class="col-12">
-              <div class="card top-selling overflow-auto">
+              <div class="card top-selling overflow-auto" style="background-color:#b6e5d2;border-radius:5px;">
 
                 <div class="filter">
-                  <!-- <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a> -->
-                  <!-- <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"> -->
-                    <!-- <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li> -->
 
-                   <!--  <li><a class="dropdown-item" href="#">Today</a></li> -->
-                    <!-- <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li> -->
-<!--                   </ul> -->
                 </div>
 
                 <div class="card-body pb-0">
@@ -365,7 +318,7 @@ $dashboard = new dash();
 
                   <table class="table table-borderless">
                     <thead>
-                      <tr>
+                      <tr style="background-color:#b6e5d2;border-radius:5px;">
                         <th scope="col">Preview</th>
                         <th scope="col">Product</th>
                         <th scope="col">Price</th>
@@ -416,18 +369,8 @@ $dashboard = new dash();
         <div class="col-lg-4">
 
           <!-- Recent Activity -->
-          <div class="card">
+          <div class="card" style="background-color:#b6e5d2;border-radius:5px;">
             <div class="filter">
-             <!--  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul> -->
             </div>
 
             <div class="card-body">

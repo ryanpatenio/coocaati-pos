@@ -3,8 +3,6 @@
 
   <footer id="footer" class="footer">
 
-
-
     <div class="container">
       <div class="row gy-3">
         <div class="col-lg-3 col-md-6 d-flex">
@@ -12,8 +10,8 @@
           <div>
             <h4>Address</h4>
             <p>
-             S3002 Street, <br>
-              Bacolod City, Philippines<br>
+            <br>
+            Zone 1, near old Jolibee, beside Avon & Digibox, Iba, Zambales, Philippines<br>
             </p>
           </div>
 
@@ -24,8 +22,8 @@
           <div>
             <h4>Reservations</h4>
             <p>
-              <strong>Phone:</strong> +09922800822<br>
-              <strong>Email:</strong> ryanpatenio06@example.com<br>
+              <strong>Phone:</strong> +63 981 8574 753<br>
+              <strong>Email:</strong> coocaati@gmail.com<br>
             </p>
           </div>
         </div>
@@ -56,7 +54,7 @@
 
     <div class="container">
       <div class="copyright">
-        <strong><span>Jedi Diah's Bakeshop Management System</span></strong>. All Rights Reserved <?php $year = (new DateTime)->format("Y"); echo $year; ?>
+        <strong><span>CooCaati</span></strong>. All Rights Reserved <?php $year = (new DateTime)->format("Y"); echo $year; ?>
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->

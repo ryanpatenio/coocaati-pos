@@ -10,7 +10,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Jedi Diah Bakeshop</title>
+  <title>CooCaati</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -36,12 +36,6 @@
 
   <script src="assets/vendor/jquery-min.js"></script>
 
-  <!-- =======================================================
-  * Template Name: NiceAdmin - v2.3.1
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -50,11 +44,12 @@
   <header id="header" class="header fixed-top d-flex align-items-center bg-dark">
 
     <div class="d-flex align-items-center justify-content-between">
+      <i class="bi bi-list toggle-sidebar-btn me-1" style="color: white;position: relative; left: -10px"></i>
+
       <a href="<?php echo WEB_ROOT."admin/"; ?>" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block " style="color: white;">Je di Ah's Bakeshop</span>
+        <span class="d-none d-lg-block " style="color: white;">Coocaati</span>
       </a>
-      <i class="bi bi-list toggle-sidebar-btn" style="color: white;"></i>
+      
     </div><!-- End Logo -->
 
     <div class="search-bar">

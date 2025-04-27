@@ -15,7 +15,7 @@ $dashboard = new dash();
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Jedi Diah's Bake Shop Online Ordering System</title>
+  <title>CooCaati</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -58,7 +58,7 @@ $dashboard = new dash();
       <a href="index.php" class="logo d-flex align-items-center me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>Diah's Bake Shop<span></span></h1>
+        <h1>CooCaati<span></span></h1>
       </a>
 
 

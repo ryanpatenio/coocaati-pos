@@ -1,12 +1,14 @@
 
 
   <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar" style="background-color: #043f34;">
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item ">
-        <a class="nav-link dd collapsed " data-value="dash" href="<?php echo WEB_ROOT."admin/"; ?>">
+      <li class="nav-item " >
+        <a class="nav-link dd collapsed " data-value="dash" href="<?php echo WEB_ROOT."admin/"; ?>"
+          style ="background-color: #b6e5d2;"
+        >
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -17,7 +19,9 @@
       if($user_data['type'] == '1'){
         echo '
         <li class="nav-item ">
-        <a class="nav-link collapsed pp" data-value="prod" href="index.php?page=product">
+        <a class="nav-link collapsed " data-value="prod" href="index.php?page=product" 
+        style ="background-color: #b6e5d2;"
+        >
           <i class="bi bi-cart-plus"></i>
           <span>Product</span>
         </a>
@@ -26,7 +30,9 @@
 
 
       <li class="nav-item">
-      <a class="nav-link collapsed cat" data-value="cate" href="index.php?page=category">
+      <a class="nav-link collapsed cat" data-value="cate" href="index.php?page=category"
+        style ="background-color: #b6e5d2;"
+      >
         <i class="bi bi-card-list"></i>
         <span>Category</span>
       </a>
@@ -40,14 +46,18 @@
       
 
        <li class="nav-item">
-        <a class="nav-link collapsed cus"data-value="ctm" href="index.php?page=customer">
+        <a class="nav-link collapsed cus"data-value="ctm" href="index.php?page=customer"
+          style ="background-color: #b6e5d2;"
+        >
           <i class="bi bi-people"></i>
           <span>Customer</span>
         </a>
       </li><!-- End Customers Page Nav -->
 
        <li class="nav-item">
-        <a class="nav-link collapsed or" data-value="order" href="index.php?page=order">
+        <a class="nav-link collapsed or" data-value="order" href="index.php?page=order"
+          style ="background-color: #b6e5d2;"
+        >
           <span class="position-absolute top-10 start-300 translate-middle badge rounded-pill bg-danger">
             <?php
             $pendingOrderedCounts = $dashboard_data->getTotalPendingOdered();
@@ -66,14 +76,18 @@
       </li><!-- End Register Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed transact" data-value="trans" href="index.php?page=Transaction">
+        <a class="nav-link collapsed transact" data-value="trans" href="index.php?page=Transaction"
+           style ="background-color: #b6e5d2;"
+        >
           <i class="bi bi-cash-coin"></i>
           <span>Transaction</span>
         </a>
       </li><!-- End Register Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed transact" data-value="trans" href="index.php?page=Messages">
+        <a class="nav-link collapsed transact" data-value="trans" href="index.php?page=Messages"
+           style ="background-color: #b6e5d2";
+        >
             <span class="position-absolute top-10 start-300 translate-middle badge rounded-pill bg-danger">
 
             
@@ -107,14 +121,18 @@
       if($user_data['type'] == '1'){
         echo '
         <li class="nav-item">
-        <a class="nav-link collapsed us"data-value="user" href="index.php?page=user">
+        <a class="nav-link collapsed us"data-value="user" href="index.php?page=user"
+        style ="background-color: #b6e5d2;"
+        >
           <i class="bi bi-people"></i>
           <span>Users</span>
         </a>
       </li><!-- End Register Page Nav -->
 
        <li class="nav-item">
-        <a class="nav-link collapsed prof" data-value="profile" href="index.php?page=profile">
+        <a class="nav-link collapsed prof" data-value="profile" href="index.php?page=profile"
+          style ="background-color: #b6e5d2;"
+        >
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>

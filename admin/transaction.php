@@ -1,6 +1,6 @@
 <?php require 'assets/checker.php'; ?>
 
-<main id="main" class="main">
+<main id="main" class="main" style="background-color: #043f34;">
     <div class="pagetitle">
       <h1>Transactions</h1>
       <nav>
@@ -13,26 +13,23 @@
     </div><!-- End Page Title -->
 
 
-    <section class="section profile">
+    <section class="section profile" >
 
-     <div class="row">
+     <div class="row" >
         
 
               <!-- DataTables Example -->
-        <div class="card mb-3">
-          <div class="card-header">
+        <div class="card mb-3" style="background-color: #b6e5d2;">
+          <div class="card-header" style="background-color: #b6e5d2;">
             <i class="fas fa-table"></i>
            
 
 
 
         </div>
-
-
-
-          <div class="card-body">
+          <div class="card-body" >
             <div class="table-responsive">
-              <table class="table datatable table-light" id="dataTable" width="100%" cellspacing="0">
+              <table  class="table datatable table-info" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
                     <th>Transaction Code</th>
@@ -43,7 +40,7 @@
                   </tr>
                 </thead>
                 
-                <tbody>
+                <tbody >
 
                   <?php
 
@@ -53,7 +50,7 @@
                     foreach ($data as $res) {
                       ?>
 
-                    <tr>
+                    <tr >
                           <td><?php echo $res['order_code'];  ?></td>
                           <td><?php echo $res['name']; ?></td>
                           <td><?php echo date("d M Y",strtotime($res['order_date'])); ?></td>
@@ -85,79 +82,79 @@
 
 <!------------All Modal-------------->
 
-              <div class="modal fade" id="viewModal" tabindex="-1">
-                <div class="modal-dialog modal-dialog-scrollable">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Transaction Details</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
+  <div class="modal fade" id="viewModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Transaction Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
 
-                  <input  type="hidden" id="hidden_od_id" name="hidden_od_id" >
+      <input  type="hidden" id="hidden_od_id" name="hidden_od_id" >
 
-                      <div class="card-body">
-                        <div class="row">
-                         <div class="col">
-                            <label class="form-label">Transaction Code : </label>
-                            <label class="form-label" ><strong id="od_code">203992</strong></label>
-                        </div>
-                        <div class="col">
-                          <label class="form-label">Date</label>
-                          <label ><strong id="od_date"> : August 19,2020</strong></label>
-                        </div>
-                       </div>
-                       <div class="row">
-                         <div class="col">
-                           <label class="form-label">Customer Name</label>
-                           <label class="form-label" ><strong id="od_name">: Romeo</strong></label>
-                         </div>
-                       </div>
-                       <div class="row">
-                         <div class="col">
-                           <label class="text-center" style="position: relative;margin-left: 40%;margin-right: 40%;"><strong>Purchase</strong></label>
-                           <hr>
-                           <table class="table table-bordered">
-                            <th>No.</th>
-                             <th>Product Name</th>
-                             <th>Price</th>
-                             <th>Quantity</th>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <label class="form-label">Transaction Code : </label>
+                <label class="form-label" ><strong id="od_code">203992</strong></label>
+            </div>
+            <div class="col">
+              <label class="form-label">Date</label>
+              <label ><strong id="od_date"> : August 19,2020</strong></label>
+            </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <label class="form-label">Customer Name</label>
+                <label class="form-label" ><strong id="od_name">: Romeo</strong></label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <label class="text-center" style="position: relative;margin-left: 40%;margin-right: 40%;"><strong>Purchase</strong></label>
+                <hr>
+                <table class="table table-bordered">
+                <th>No.</th>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
 
-                             <tbody id="trans_table_display">
-                               
-                             </tbody>
+                  <tbody id="trans_table_display">
+                    
+                  </tbody>
 
-                           </table>
-                           <div class="row">
-                             <div class="col">
-                                <label class="form-label">Total Price</label>
-                                <label class="form-label" ><strong id="tt_price">: 400</strong></label>
-                             </div>
-                           </div>
-
-                           <div class="row">
-                             <div class="col">
-                               <label class="form-label">Cash</label>
-                               <label class="form-label" ><strong id="od_cash"> : 500</strong></label>
-                             </div>
-                           </div>
-                           <div class="row">
-                             <div class="col">
-                               <label class="form-label">Exchange</label>
-                               <label class="form-label" ><strong id="od_exchange">: 100</strong></label>
-                             </div>
-                           </div>
-                         </div>
-                       </div>
-                      </div>                     
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      
-                    </div>
+                </table>
+                <div class="row">
+                  <div class="col">
+                    <label class="form-label">Total Price</label>
+                    <label class="form-label" ><strong id="tt_price">: 400</strong></label>
                   </div>
                 </div>
-              </div><!-- End Basic Modal-->
+
+                <div class="row">
+                  <div class="col">
+                    <label class="form-label">Cash</label>
+                    <label class="form-label" ><strong id="od_cash"> : 500</strong></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <label class="form-label">Exchange</label>
+                    <label class="form-label" ><strong id="od_exchange">: 100</strong></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>                     
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div><!-- End Basic Modal-->
 
 
 

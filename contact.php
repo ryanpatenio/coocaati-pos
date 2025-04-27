@@ -7,7 +7,12 @@
         </div>
 
         <div class="mb-3">
-          <iframe style="border:0; width: 100%; height: 350px;" src="https://maps.google.com/maps?q=philippines negros occidental bacolod city&t=&z=10&ie=UTF8&iwloc=&output=embed" frameborder="0" allowfullscreen></iframe>
+        <iframe 
+          style="border:0; width: 100%; height: 350px;" 
+          src="https://maps.google.com/maps?q=Zone+1,+Iba,+Zambales,+Philippines&z=17&t=m&output=embed" 
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>
         </div><!-- End Google Maps -->
 
         <div class="row gy-4">
@@ -17,7 +22,7 @@
               <i class="icon bi bi-map flex-shrink-0"></i>
               <div>
                 <h3>Our Address</h3>
-                <p>S3002 Street, Bacolod City, Philippines</p>
+                <p> Zone 1, near old Jolibee, beside Avon & Digibox, Iba, Zambales, Philippines</p>
               </div>
             </div>
           </div><!-- End Info Item -->
@@ -27,7 +32,7 @@
               <i class="icon bi bi-envelope flex-shrink-0"></i>
               <div>
                 <h3>Email Us</h3>
-                <p>ryanpatenio06@example.com</p>
+                <p>coocaati@gmail.com</p>
               </div>
             </div>
           </div><!-- End Info Item -->
@@ -37,7 +42,7 @@
               <i class="icon bi bi-telephone flex-shrink-0"></i>
               <div>
                 <h3>Call Us</h3>
-                <p>09922800822</p>
+                <p>+63 981 8574 753</p>
               </div>
             </div>
           </div><!-- End Info Item -->
@@ -56,7 +61,7 @@
 
         </div>
 
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form p-3 p-md-4">
+        <!-- <form action="forms/contact.php" method="post" role="form" class="php-email-form p-3 p-md-4">
           <div class="row">
             <div class="col-xl-6 form-group">
               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -77,7 +82,7 @@
             <div class="sent-message">Your message has been sent. Thank you!</div>
           </div>
           <div class="text-center"><button type="submit">Send Message</button></div>
-        </form><!--End Contact Form -->
+        </form>End Contact Form -->
 
       </div>
     </section>
