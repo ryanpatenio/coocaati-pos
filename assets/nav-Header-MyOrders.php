@@ -98,7 +98,8 @@ $dashboard = new dash();
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 
           <?php $cust_avatar = $member->getCustomerAvatar($_SESSION['customer_id']); ?>
-            <img src="<?php echo WEB_ROOT; ?>admin/assets/avatar/<?php echo $cust_avatar; ?>" alt="Profile" class="rounded-circle" style="width: 40px;">
+            <img src="<?php echo WEB_ROOT; ?>admin/assets/avatar/<?php echo $cust_avatar; ?>" alt="Profile"  class="rounded-circle" 
+            style="width: 40px; height: 40px; object-fit: cover;">
             <span class="d-none d-md-block dropdown-toggle ps-2">
                <?php if(!isset($_SESSION['customer_id'])){
 

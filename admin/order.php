@@ -34,7 +34,7 @@
         
 
               <!-- DataTables Example -->
-        <div class="card mb-3" style="background-color:#b6e5d2;border-radius:5px;"> 
+        <div class="card mb-3" style="background-color:#b6e5d2;border-radius:20px;"> 
           <div class="card-header" style="background-color:#b6e5d2;border-radius:5px;">
             <i class="fas fa-table"></i>
            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#AddOrders" type="button"><i class="bi bi-plus-circle"> New</i></button>
@@ -100,7 +100,7 @@
                     <td style="color: <?php echo $color; ?>"><?php echo $status; ?></td>
                    
                     <td>
-                      <button type="button" class="btn btn-sm btn-warning bi bi-pencil" id="mod_order_btn" data-id="<?php echo $data_orders['order_id']; ?>"> Modify</button>
+                      <button type="button" class="btn btn-sm btn-primary bi bi-pencil" id="mod_order_btn" data-id="<?php echo $data_orders['order_id']; ?>"> Modify</button>
                       
                     </td>
                   </tr>

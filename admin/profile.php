@@ -55,10 +55,10 @@ if(isset($_POST['monkey_name'])){
       <div class="row">
         <div class="col-xl-4">
 
-          <div class="card" style="background-color:#b6e5d2;border-radius:5px;">
+          <div class="card" style="background-color:#b6e5d2;border-radius:20px;">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="assets/avatar/<?php echo $user_data['avatar']; ?>"  style="width: 40px; height: 40px;" alt="Profile" class="rounded-circle overflow-hidden w-100 object-fit-cover h-100">
+              <img src="assets/avatar/<?php echo $user_data['avatar']; ?>"  style="width: 40px; height: 40px;" alt="Profile" class=" overflow-hidden w-100 object-fit-cover h-100">
               <h2><?php echo $user_data['account_name']; ?></h2>
               <h3><?php echo $user_data['job']; ?></h3>
              
@@ -69,7 +69,7 @@ if(isset($_POST['monkey_name'])){
 
         <div class="col-xl-8">
 
-          <div class="card" style="background-color:#b6e5d2;border-radius:5px;">
+          <div class="card" style="background-color:#b6e5d2;border-radius:20px;">
             <div class="card-body pt-3">
               <!-- Bordered Tabs -->
               <ul class="nav nav-tabs nav-tabs-bordered">

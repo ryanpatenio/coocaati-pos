@@ -21,7 +21,7 @@
         
 
               <!-- DataTables Example -->
-        <div class="card mb-3" style="background-color: #b6e5d2;">
+        <div class="card mb-3" style="background-color: #b6e5d2;border-radius:20px;">
           <div class="card-header" style="background-color: #b6e5d2;">
             <i class="fas fa-table"></i>
            

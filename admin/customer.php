@@ -20,7 +20,7 @@
         
 
               <!-- DataTables Example -->
-        <div class="card mb-3" style="background-color:#b6e5d2;border-radius:5px;">
+        <div class="card mb-3" style="background-color:#b6e5d2;border-radius:20px;">
           <div class="card-header" style="background-color:#b6e5d2;border-radius:5px;">
             <i class="fas fa-table"></i>
            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#AddCustomer" type="button"><i class="bi bi-plus-circle"> New</i></button>
@@ -59,7 +59,7 @@
                       <td><?php echo $data_cus['address']; ?></td>
                      
                       <td>
-                        <button type="button" class="btn btn-warning bi bi-pencil" id="edit_cust_btn" data-id="<?php echo $data_cus['customer_id']; ?>"> Modify</button>
+                        <button type="button" class="btn btn-primary bi bi-pencil" id="edit_cust_btn" data-id="<?php echo $data_cus['customer_id']; ?>"> Modify</button>
                        <!--  <button type="button" class="btn btn-secondary bi bi-folder-symlink"> Archive</button> -->
                       </td>
                   </tr>

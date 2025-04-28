@@ -18,13 +18,15 @@ $res_data = $crud->viewMessageRequest($msg_id);
 
 ?>
 <main id="main" class="main">
-    <div class="pageTitle">
-      <h1>View Messages</h1>
+<div class="pagetitle">
+      <h1 style="color: white;">View Message</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="<?php echo WEB_ROOT;  ?>">Home</a></li>
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Messages</li>
+          <li class="breadcrumb-item"><a href="<?php echo WEB_ROOT."/admin";  ?>" 
+            style="color:white"
+          >Home</a></li>
+          <li class="breadcrumb-item" style="color:white;">Pages</li>
+          <li class="breadcrumb-item active" style="color:white;">Message</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
