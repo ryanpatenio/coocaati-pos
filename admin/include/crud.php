@@ -325,6 +325,20 @@ function confirm_order(){
 	$autocode = $start + $end;
 	//$code = rand(1,999);
 
+	$total;$isDiscounted;
+	$totalPrice = $_POST['hidden_total_price'];
+	$totalDiscountedPrice = $_POST['hidden_discounted_price'] ?? 0;
+	$discount = $_POST['discount'];
+	
+	if(empty($totalDiscountedPrice) || $totalDiscountedPrice == 0){		
+		$total = $totalPrice;
+		$isDiscounted = '';
+	}else{
+		$total = $totalDiscountedPrice;
+		$isDiscounted = '1';
+	}
+	$card_id = $_POST['cardId'];
+
 	//this code is for updating only the cart or set the status into 1 to confirm that the orders are complete
 	$cart_id = $_POST['cart_id'];
 	for($count = 0; $count < count($cart_id); $count++){
@@ -336,7 +350,7 @@ function confirm_order(){
 	}
 	
 	//after updating the cart..we will insert new data into table orders
-	$mydb->setQuery("INSERT INTO orders (customer_id, order_code, order_date, order_total, cash,exchange,status) VALUES ('".$customer_id."', '".$autocode."', now(), '".$_POST['hidden_total_price']."', '0','0','0');");
+	$mydb->setQuery("INSERT INTO orders (customer_id, order_code, order_date, order_total, cash,exchange,card_id,is_discounted,discount_id,status) VALUES ('".$customer_id."', '".$autocode."', now(), '".$total."', '0','0','".$card_id."','".$isDiscounted."','".$discount."','0');");
 	$cur2 = $mydb->executeQuery();
 	$last_id = $mydb->insert_id(); //lets get the last inserted ID from the query we last inserted
 
@@ -545,33 +559,49 @@ function get_prod(){
 
 function edit_product(){
 	global $mydb;
-	extract($_POST);
 
-	$data = " prod_name = '$edit_prodName' ";
-	$data .= ", prod_price = '$edit_prodPrice' ";
-	
-	$data .= ", prod_desc = '$edit_prodDesc' ";
-	$data .= ", cat_id = '$edit_category' ";
-	$data .= ", status = '1' ";
+	$conn = $mydb->getConnection();
 
-	if($_FILES['edit_avatar']['tmp_name'] != ''){
-						$r_product = strtotime(date('y-m-d H:i')).'_'.$_FILES['edit_avatar']['name'];
-						$move = move_uploaded_file($_FILES['edit_avatar']['tmp_name'],'assets/avatar/'. $r_product);
-						unlink('assets/avatar/'.$old_avatar);
-					$data .= ", avatar = '$r_product' ";
+		$prod_name   = mysqli_real_escape_string($conn, $_POST['edit_prodName']);
+		$prod_price  = mysqli_real_escape_string($conn, $_POST['edit_prodPrice']);
+		$prod_desc   = mysqli_real_escape_string($conn, $_POST['edit_prodDesc']);
+		$cat_id      = mysqli_real_escape_string($conn, $_POST['edit_category']);
+		$hidden_prod_id = mysqli_real_escape_string($conn, $_POST['hidden_prod_id']);
+		$old_avatar  = $_POST['old_avatar'];
+		$status      = '1';
 
-	}
+		$avatar = $old_avatar;
 
-	$mydb->setQuery("UPDATE product SET ".$data." where prod_id = '".$hidden_prod_id."';");
-	$cur = $mydb->executeQuery();
+		//  upload
+		if (!empty($_FILES['edit_avatar']['tmp_name'])) {
+			$r_product = strtotime(date('Y-m-d H:i:s')) . '_' . basename($_FILES['edit_avatar']['name']);
+			$upload_path = 'assets/avatar/' . $r_product;
+			
+			if (move_uploaded_file($_FILES['edit_avatar']['tmp_name'], $upload_path)) {
+				if (!empty($old_avatar) && file_exists('assets/avatar/' . $old_avatar)) {
+					unlink('assets/avatar/' . $old_avatar);
+				}
+				$avatar = $r_product;
+			}
+		}
 
-	if($cur){
-		return 1;
-	}else{
-		return 2;
-	}
+		// include avatar
+		$mydb->setQuery("UPDATE product SET 
+			prod_name = '$prod_name', 
+			prod_price = '$prod_price', 
+			prod_desc = '$prod_desc', 
+			cat_id = '$cat_id', 
+			status = '$status', 
+			avatar = '$avatar' 
+			WHERE prod_id = '$hidden_prod_id'");
 
+		$cur = $mydb->executeQuery();
 
+		if ($cur) {
+			return 1;
+		} else {
+			return 2;
+		}
 
 }
 
@@ -1228,12 +1258,32 @@ function getGraph(){
     	return json_encode($data);
     }
 
+	public function getOrderListData(){
+		global $mydb;
+		extract($_POST);
+
+		$order_id = $_POST['order_id'];
+
+		$mydb->setQuery("select o.order_id,o.order_code,d.title,d.percent,o.cash,o.exchange,o.order_date,o.order_total,case when o.is_discounted = 1 then 'Yes' else 'No' end as 'is_discounted'  from orders o left join discount d on o.discount_id = d.discount_id  where o.order_id = '".$order_id."'");
+		$cur2 = $mydb->executeQuery();
+		$numrows = $mydb->num_rows($cur2);
+
+		if($numrows > 0){
+			$found = $mydb->loadSingleResult();
+			return json_encode($found);
+		}else{
+			return 2; #failed 
+		}
+		
+		
+	}
+
     function getMyOrderList(){
     	global $mydb;
-    	$mydb->setQuery("select o.order_id, p.prod_name,od.qty from product p,orders o, order_details od where o.order_id = od.order_id and od.prod_id = p.prod_id and o.order_id = {$_POST['order_id']}");
+    	$mydb->setQuery("select o.order_id, p.prod_name,od.qty,p.prod_price from product p,orders o, order_details od where o.order_id = od.order_id and od.prod_id = p.prod_id and o.order_id = {$_POST['order_id']}");
     	$cur = $mydb->executeQuery();
     	$numrows = $mydb->num_rows($cur);
-
+		
     	if($numrows > 0){
     		$array = array();
 
@@ -1245,7 +1295,8 @@ function getGraph(){
                       <td>".$i."</td>
                       <td>".$data['prod_name']."</td>                                       
                       
-                      <td>".$data['qty']."</td>                                       
+                      <td>".$data['qty']."</td>  
+					  <td>".$data['prod_price']."</td>                                       
                   </tr>  
 
     			";
@@ -1304,16 +1355,16 @@ function getGraph(){
 		}
 
 	function getMyOrderListCount(){
-	global $mydb;
-		$mydb->setQuery("select count(*) as 'total_count' from orders where customer_id = {$_POST['id']} and status = 0;");
-		$cur = $mydb->executeQuery();
-		$numrows = $mydb->num_rows($cur);
-		if($numrows > 0){
-			$found = $mydb->loadSingleResult();
-			return $found->total_count;
-		}else{
-			return false;
-		}
+		global $mydb;
+			$mydb->setQuery("select count(*) as 'total_count' from orders where customer_id = {$_POST['id']} and status = 0;");
+			$cur = $mydb->executeQuery();
+			$numrows = $mydb->num_rows($cur);
+			if($numrows > 0){
+				$found = $mydb->loadSingleResult();
+				return $found->total_count;
+			}else{
+				return false;
+			}
 
 		}
 

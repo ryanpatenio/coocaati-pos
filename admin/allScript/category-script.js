@@ -22,7 +22,6 @@ $(document).ready(function(){
 			}
 
 
-
 		});
 
 
@@ -30,9 +29,6 @@ $(document).ready(function(){
 
 	$(document).on('click','#edit_cat_btn',function(e){
 		e.preventDefault();
-
-
-
 		let ID = $(this).attr('data-id');
 
 			$.ajax({

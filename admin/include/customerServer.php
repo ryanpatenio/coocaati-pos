@@ -35,5 +35,11 @@ if($action == 'restoreMyOrder'){
 	if($restoreOrder)
 		echo $restoreOrder;
 }
+if($action == 'getOrderListData'){
+	$getData = $crud->getOrderListData();
+	if($getData){
+		echo $getData;
+	}
+}
 
  ?>

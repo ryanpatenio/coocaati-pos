@@ -70,8 +70,8 @@ echo 'null';
                     <td><?php echo $data_order['order_total']; ?></td>
                     <td>
                         
-                    <button class="btn btn-success btn-sm dropdown-toggle btnDisplayMyOrderlist" type="button" data-id="<?php echo $data_order['order_id']; ?>"  aria-expanded="false">
-                      Products Ordered
+                    <button class="btn btn-primary btn-sm btnDisplayMyOrderlist" type="button" data-id="<?php echo $data_order['order_id']; ?>"  aria-expanded="false">
+                      View Order
                     </button>
                       
                       <!--   <ul class="dropdown-menu myOrderListDisplay">
@@ -134,7 +134,7 @@ echo 'null';
     </section>
 
 
-
+<!--Drafted Orders--->
  <section id="contact2" class="contact2">
       <div class="container" data-aos="fade-up">
 
@@ -142,8 +142,6 @@ echo 'null';
           
           <p>Drafted Orders</p>
         </div>
-
-
 
   <div class="card mb-3">
      <div class="card-header">
@@ -179,8 +177,8 @@ echo 'null';
                     <td><?php echo $data_order['order_total']; ?></td>
                     <td>
                         
-                    <button class="btn btn-secondary btn-sm dropdown-toggle btnDisplayMyOrderlist" type="button" data-id="<?php echo $data_order['order_id']; ?>"  aria-expanded="false">
-                      Products Ordered
+                    <button class="btn btn-primary btn-sm btnDisplayMyOrderlist" type="button" data-id="<?php echo $data_order['order_id']; ?>"  aria-expanded="false">
+                      View Orders
                     </button>
                       
                       <!--   <ul class="dropdown-menu myOrderListDisplay">
@@ -242,17 +240,56 @@ echo 'null';
                     </div>
                     <div class="modal-body">
 
+                      <div class="row mb-2">
+                        <div class="col">
+                          <label for="">Transaction Code : <strong id="transaction-code">123</strong></label>
+                        </div>
+                        <div class="col">
+                          <label for="">Date : <strong id="date">May 12</strong></label>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-center align-items-center mt-4 mb-5">
+                        <strong>Purchase</strong>
+                      </div>
+
                      <table class="table table-bordered">
                           <th>No.</th>
                           <th>Product Name</th>
                          
                           <th>Quantity</th>
+                          <th>Price</th>
 
                       <tbody id="ListOfMyOrders">
                                
                       </tbody>
 
                     </table>
+
+                    <div class="row mt-4 mb-2">
+                       <div class="col">
+                        <label for="">Total Price : <strong id="total-price">1000</strong></label>
+                       </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <label for="">Discounted ? : <strong id="discounted">No</strong></label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <label for="">Discounted Type : <strong id="discounted-type">PWD</strong> <strong id="percent" class="text-danger"> (2%)</strong></label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <label for="">Cash : <strong id="cash">0</strong></label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <label for="">Exchange : <strong id="exchange">0</strong></label>
+                      </div>
+                    </div>
                     
                     </div>
                     <div class="modal-footer">
@@ -328,7 +365,11 @@ global $mydb;
             success:function(data){
               //console.log(data);
               $('#ListOfMyOrders').html(data);
-              $('#viewMyOrdersModal').modal('show');
+              getSelectedOrdersData(order_id);            
+             
+            },
+            complete:function(){
+               $('#viewMyOrdersModal').modal('show');
             },
 
             error:function(xhr,status,error){
@@ -428,6 +469,50 @@ $(document).on('click','.BtnReOrder',function(e){
         });
 
        });
+       
+
+       function getSelectedOrdersData(id){
+
+          $.ajax({
+                    url:'admin/include/customerServer.php?action=getOrderListData',
+                    method:'POST',
+                    data:{order_id: id},
+                    dataType:'json',
+
+                    beforeSend:function(){
+
+                    },
+                    success:function(data){
+                      
+                     // console.log(data);
+                        $('#total-price').text(data?.order_total);
+                        $('#discounted').text(data?.is_discounted);
+                        $('#discounted-type').text(data?.title ?? "No");
+                        $('#cash').text(data?.cash ?? 0);
+                        $('#percent').text(`(${data?.percent ?? 0} %)`)
+                        $('#exchange').text(data?.exchange ?? 0);
+
+                        const options = {
+                          year : 'numeric',
+                          month : 'long',
+                          day : 'numeric'
+                        }
+
+                        $('#date').text(new Date(data?.order_date).toLocaleDateString('en-PH',options));
+                        $('#transaction-code').text(data?.order_code);
+
+
+                      if(data == 2){
+                        msg('Internal Server Error!','error');
+                      }
+                    },
+
+                    error:function(xhr,status,error){
+                        alert(xhr.responseText);
+                    }
+
+                });
+       }
 
 
      </script>

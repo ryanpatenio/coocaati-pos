@@ -8,6 +8,7 @@ require_once 'include/initialize.php';
 $crud = new action();
 $tryLog = new user();
 $dashboard = new dash();
+$DiscountController = new DiscountController();
 
 
 $action = $_GET['action'];
@@ -248,6 +249,28 @@ if($action == 'get-chat'){
 	if($getChat)
 		echo $getChat;
 }
+
+if($action == 'addDiscount'){
+	$store = $DiscountController->Store();
+	if($store){
+		echo $store;
+	}
+
+}
+if($action == 'getDiscountById'){
+	$get = $DiscountController->getDiscount();
+	if($get){
+		echo $get;
+	}
+}
+
+if($action == 'updateDiscount'){
+	$update = $DiscountController->updateDiscount();
+	if($update){
+		echo $update;
+	}
+}
+
 
 
 

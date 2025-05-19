@@ -126,8 +126,27 @@
 
 $(document).on('click','#checkout',function(e){
   e.preventDefault();
+  
+  let total_price;
 
-  let total_price = $("#hidden_total_price").val();
+
+  const selectedOption = $('#discountSelect').find(':selected');
+  const type = selectedOption.data('type');
+  const discountedPrice = parseFloat($('#hidden_discounted_price').val()) || 0;
+
+  if(discountedPrice === 0){
+    //use the total price
+     total_price = $("#hidden_total_price").val();
+  }else{
+    total_price = $("#hidden_discounted_price").val();      
+  }
+  if(type === 'pwd' || type === 'student' || type === 'senior'){
+       if($('#cardId').val() == ''){
+        msg('Card ID is required!','info');
+        return;
+       }
+    }
+  console.log(type);
 
   if(total_price != ''){
     swal({
@@ -208,7 +227,7 @@ $(document).on('click','#confirm_checkout',function(e){
               data:$('#customer_cart_form').serialize(),
 
               success:function(data){
-                
+                console.log(data)
                 if(data == 1){
                   message('Order Process Complete!','success');
                 }
@@ -390,7 +409,7 @@ function load_total_cart(){
     data:{id:hidden_id},
 
     success:function(data){
-      $('#total_price_cart').text('Total: '+data);
+      $('#total_price_cart').text('Original Total Price: '+data);
       $('#hidden_total_price').val(data);
     },
 

@@ -42,7 +42,7 @@
               <i class="icon bi bi-telephone flex-shrink-0"></i>
               <div>
                 <h3>Call Us</h3>
-                <p>+63 981 8574 753</p>
+                <p>+63 956 0918 293</p>
               </div>
             </div>
           </div><!-- End Info Item -->
@@ -61,7 +61,8 @@
 
         </div>
 
-        <!-- <form action="forms/contact.php" method="post" role="form" class="php-email-form p-3 p-md-4">
+        
+        <!--+<form action="forms/contact.php" method="post" role="form" class="php-email-form p-3 p-md-4">
           <div class="row">
             <div class="col-xl-6 form-group">
               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>

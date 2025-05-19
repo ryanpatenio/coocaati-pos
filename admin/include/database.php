@@ -35,6 +35,9 @@ var $sql_string = '';
 		}
 
 	}
+	public function getConnection() {
+   		 return $this->conn;
+	}
 
 	function setQuery($sql='') {
 		$this->sql_string=$sql;

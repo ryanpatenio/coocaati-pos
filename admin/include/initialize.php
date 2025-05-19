@@ -15,6 +15,7 @@ require_once(LIB_PATH.DS."member.php");
 require_once(LIB_PATH.DS."database.php");
 require_once(LIB_PATH.DS."crud.php");
 require_once(LIB_PATH.DS."dashboard.php");
+require_once(LIB_PATH.DS."DiscountController.php");
 
 
 

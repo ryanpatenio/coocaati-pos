@@ -1,13 +1,13 @@
 
 
   <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar" style="background-color: #043f34;">
+  <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item " >
         <a class="nav-link dd collapsed " data-value="dash" href="<?php echo WEB_ROOT."admin/"; ?>"
-          style ="background-color: #b6e5d2;"
+         
         >
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
@@ -20,7 +20,7 @@
         echo '
         <li class="nav-item ">
         <a class="nav-link collapsed " data-value="prod" href="index.php?page=product" 
-        style ="background-color: #b6e5d2;"
+       
         >
           <i class="bi bi-cart-plus"></i>
           <span>Product</span>
@@ -31,10 +31,18 @@
 
       <li class="nav-item">
       <a class="nav-link collapsed cat" data-value="cate" href="index.php?page=category"
-        style ="background-color: #b6e5d2;"
+        
       >
         <i class="bi bi-card-list"></i>
         <span>Category</span>
+      </a>
+    </li><!-- End Category Page Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed cat" data-value="cate" href="index.php?page=discount"
+        
+      >
+        <i class="bi bi-percent"></i>
+        <span>Discount</span>
       </a>
     </li><!-- End Category Page Nav -->
         ';
@@ -47,7 +55,7 @@
 
        <li class="nav-item">
         <a class="nav-link collapsed cus"data-value="ctm" href="index.php?page=customer"
-          style ="background-color: #b6e5d2;"
+         
         >
           <i class="bi bi-people"></i>
           <span>Customer</span>
@@ -56,7 +64,7 @@
 
        <li class="nav-item">
         <a class="nav-link collapsed or" data-value="order" href="index.php?page=order"
-          style ="background-color: #b6e5d2;"
+         
         >
           <span class="position-absolute top-10 start-300 translate-middle badge rounded-pill bg-danger">
             <?php
@@ -77,7 +85,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed transact" data-value="trans" href="index.php?page=Transaction"
-           style ="background-color: #b6e5d2;"
+           
         >
           <i class="bi bi-cash-coin"></i>
           <span>Transaction</span>
@@ -86,7 +94,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed transact" data-value="trans" href="index.php?page=Messages"
-           style ="background-color: #b6e5d2";
+           
         >
             <span class="position-absolute top-10 start-300 translate-middle badge rounded-pill bg-danger">
 
@@ -122,7 +130,7 @@
         echo '
         <li class="nav-item">
         <a class="nav-link collapsed us"data-value="user" href="index.php?page=user"
-        style ="background-color: #b6e5d2;"
+       
         >
           <i class="bi bi-people"></i>
           <span>Users</span>
@@ -131,7 +139,7 @@
 
        <li class="nav-item">
         <a class="nav-link collapsed prof" data-value="profile" href="index.php?page=profile"
-          style ="background-color: #b6e5d2;"
+          
         >
           <i class="bi bi-person"></i>
           <span>Profile</span>

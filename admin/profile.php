@@ -38,14 +38,14 @@ if(isset($_POST['monkey_name'])){
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1 style="color: white;">Profile</h1>
+      <h1 >Profile</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="<?php echo WEB_ROOT."/admin";  ?>" 
-            style="color:white"
+            
           >Home</a></li>
-          <li class="breadcrumb-item" style="color:white;">Pages</li>
-          <li class="breadcrumb-item active" style="color:white;">Profile</li>
+          <li class="breadcrumb-item" >Pages</li>
+          <li class="breadcrumb-item active" >Profile</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -55,7 +55,7 @@ if(isset($_POST['monkey_name'])){
       <div class="row">
         <div class="col-xl-4">
 
-          <div class="card" style="background-color:#b6e5d2;border-radius:20px;">
+          <div class="card" style="border-radius:20px;">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
               <img src="assets/avatar/<?php echo $user_data['avatar']; ?>"  style="width: 40px; height: 40px;" alt="Profile" class=" overflow-hidden w-100 object-fit-cover h-100">
@@ -69,7 +69,7 @@ if(isset($_POST['monkey_name'])){
 
         <div class="col-xl-8">
 
-          <div class="card" style="background-color:#b6e5d2;border-radius:20px;">
+          <div class="card" style="border-radius:20px;">
             <div class="card-body pt-3">
               <!-- Bordered Tabs -->
               <ul class="nav nav-tabs nav-tabs-bordered">

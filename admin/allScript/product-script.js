@@ -15,7 +15,7 @@ $(document).ready(function(){
             cache:false,
 
 			success:function(data){
-
+				console.log(data);
 				if(data == 1){
 					message('New Product added Successfully!','success');
 				}
@@ -96,7 +96,7 @@ $(document).ready(function(){
 			            cache:false,
 
 						success:function(data){
-							
+							console.log(data)
 							if(data == 1){
 								message('Product Updated Successfully!','success');
 							}

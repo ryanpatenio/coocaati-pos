@@ -7,11 +7,11 @@ $dashboard = new dash();
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1 style="color: white;">Dashboard</h1>
+      <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="<?= WEB_ROOT."/admin" ?>" style="color:white;">Home</a></li>
-          <li class="breadcrumb-item active" style="color: white;">Dashboard</li>
+          <li class="breadcrumb-item"><a href="<?= WEB_ROOT."/admin" ?>" >Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -25,7 +25,7 @@ $dashboard = new dash();
 
             <!-- Sales Card -->
             <div class="col-xxl-4 col-md-6">
-              <div class="card info-card sales-card" style="background-color:#b6e5d2;border-radius:20px;">
+              <div class="card info-card sales-card shadow-lg" style="border-radius:20px;">
 
                 <div class="filter">
       
@@ -76,7 +76,7 @@ $dashboard = new dash();
 
             <!-- Revenue Card -->
             <div class="col-xxl-4 col-md-6">
-              <div class="card info-card revenue-card" style="background-color:#b6e5d2;border-radius:20px;">
+              <div class="card info-card revenue-card shadow-lg" style="border-radius:20px;">
 
                 <div class="filter">
                 
@@ -138,7 +138,7 @@ $dashboard = new dash();
             <!-- Customers Card -->
             <div class="col-xxl-4 col-xl-12">
 
-              <div class="card info-card customers-card" style="background-color:#b6e5d2;border-radius:20px;">
+              <div class="card info-card customers-card shadow-lg" style="border-radius:20px;">
 
                 <div class="filter">
                 </div>
@@ -198,7 +198,7 @@ $dashboard = new dash();
               ?>
 
           <div class="col-12">
-              <div class="card" style="background-color:#b6e5d2;border-radius:20px;">
+              <div class="card shadow-lg" style="border-radius:20px;">
 
                 <div class="filter">
                 </div>
@@ -217,7 +217,7 @@ $dashboard = new dash();
 
             <!-- Recent Sales -->
             <div class="col-12">
-              <div class="card recent-sales overflow-auto" style="background-color:#b6e5d2;border-radius:20px;">
+              <div class="card recent-sales overflow-auto shadow-lg" style="border-radius:20px;">
 
                 <div class="filter">
                 </div>
@@ -225,7 +225,7 @@ $dashboard = new dash();
                 <div class="card-body">
                   <h5 class="card-title">Recent Sales <span>| Today</span></h5>
 
-                  <table class="table table-info datatable">
+                  <table class="table  datatable">
                     <thead>
                       <tr>
                         <th scope="col">#trans Code</th>
@@ -298,7 +298,7 @@ $dashboard = new dash();
 
             <!-- Top Selling -->
             <div class="col-12">
-              <div class="card top-selling overflow-auto" style="background-color:#b6e5d2;border-radius:20px;">
+              <div class="card top-selling overflow-auto shadow-lg" style="border-radius:20px;">
 
                 <div class="filter">
 
@@ -309,7 +309,7 @@ $dashboard = new dash();
 
                   <table class="table table-borderless">
                     <thead>
-                      <tr style="background-color:#b6e5d2;border-radius:5px;">
+                      <tr style="border-radius:5px;">
                         <th scope="col">Preview</th>
                         <th scope="col">Product</th>
                         <th scope="col">Price</th>
@@ -360,7 +360,7 @@ $dashboard = new dash();
         <div class="col-lg-4">
 
           <!-- Recent Activity -->
-          <div class="card" style="background-color:#b6e5d2;border-radius:20px;">
+          <div class="card shadow-lg" style="border-radius:20px;">
             <div class="filter">
             </div>
 
